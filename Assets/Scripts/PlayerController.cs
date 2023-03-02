@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,8 +19,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Move the vehicle forward
+        if(transform.position.z > 185){
+            Application.Quit ();
+        }
 
+        if(transform.position.y < -2){
+            SceneManager.LoadScene (0);
+            
+        }
+
+        //Move the vehicle forward
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
 
