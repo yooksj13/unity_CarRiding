@@ -9,23 +9,45 @@ public class PlayerController : MonoBehaviour
      float horizontalInput;
      float forwardInput;
      float speed = 20.0f;
+     public GameObject gameoverPanel;
+     public GameObject gameclearPanel;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameoverPanel.SetActive(false);
+        gameclearPanel.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.z > 185){
-            Application.Quit ();
+        if(transform.position.z > 186){
+            gameclearPanel.SetActive(true);
         }
 
         if(transform.position.y < -2){
-            SceneManager.LoadScene (0);
+            gameoverPanel.SetActive(true);
             
+        }
+        if (gameoverPanel.activeSelf)
+        {
+            if (Input.GetKeyDown("r"))
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
+
+        if (gameclearPanel.activeSelf)
+        {
+            if (Input.GetKeyDown("r"))
+            {
+                SceneManager.LoadScene(0);
+            }
+            else if(Input.GetKeyDown("e"))
+            {
+                Application.Quit ();
+            }
         }
 
         //Move the vehicle forward
